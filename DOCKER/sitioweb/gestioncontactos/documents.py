@@ -23,7 +23,7 @@ class ContactoDocument(Document):
             'apellido',
             'Ncelular',
             'fotogragia',
-            'correo'
+            'correo',
         ]
 
         # Ignore auto updating of Elasticsearch when a model is saved
