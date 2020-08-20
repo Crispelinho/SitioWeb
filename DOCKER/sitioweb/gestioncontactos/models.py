@@ -13,8 +13,8 @@ class Contacto(models.Model):
         unique_together = ('Ncelular',)
 
 class Car(models.Model):
-    name = models.CharField()
-    color = models.CharField()
+    name = models.CharField(max_length=30)
+    color = models.CharField(max_length=30)
     description = models.TextField()
     type = models.IntegerField(choices=[
         (1, "Sedan"),
