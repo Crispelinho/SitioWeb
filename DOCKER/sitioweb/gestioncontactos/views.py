@@ -1,19 +1,24 @@
 from django.shortcuts import render
+from .models import Contacto
+from .forms import ContactosForm
 from django.http import HttpResponse
-from django.contrib.auth.models import User
-from gestioncontactos.models import Contacto
 from django.template import loader
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-# Create your views here.
+from django.http import HttpResponseRedirect
 
-def ListaContactos(request):
+def Contactos(request):
     template = loader.get_template('contactos.html')
-    context = {
-        'contactos':Contacto.objects.all(),
-    }
+    if request.method == 'POST':
+
+        form = ContactosForm(request.POST)
+        print(form)
+        if form.is_valid():
+            form.save()
+            return "Exitoso"
+        else:
+            return "Error"
+    else:   
+            form = ContactosForm()
+            context ={'form': form,
+                    'contactos':Contacto.objects.all(),   
+            }
     return HttpResponse(template.render(context, request))
-
-
-def index (request):
-
-    return render(request, 'index.html')

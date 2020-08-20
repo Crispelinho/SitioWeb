@@ -4,7 +4,7 @@ from django.contrib import admin
 from gestioncontactos.models import Contacto
 
 class ContactosAdmin(admin.ModelAdmin):
-    list_display=("nombre","apellido","Ncelular","fotogragia","correo")
+    list_display=("nombre","apellido","Ncelular","fotografia","correo")
     search_fields=("nombre","apellido")    
     list_filter=("nombre",)
 

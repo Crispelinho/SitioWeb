@@ -1,32 +1,55 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" href="favicon.ico">
-    
-        <title>Como integrar Django y Bootstrap 4 </title>
-    
-        {# Cargamos la librería #}
-    {% load bootstrap4 %}
-    
-    {# CSS Bootstrap #}
-    {% bootstrap_css %}
-    
-    
-    </head>
-    <body>
-        <h1 class="text-center">Lista De Contactos</h1>
-        <table id="table_ejemploList" class="table table-striped table-bordered">
+{% extends 'base.html' %}
+
+{% block title %}Registro Index{% endblock %}
+{% block clase %}active{% endblock %}
+
+{% block content %} 
+<div class="container-fluid">
+    <form method="POST" action="/contactos/">
+        {% csrf_token %}
+       <div class="row ">
+        <div class="form-group col-md-6">
+            <label for="desde-text" class="col-form-label">Nombre:</label>
+            {{form.nombre}}
+        </div>
+        <div class="form-group col-md-6">
+            <label for="message-text" class="col-form-label">Apellido:</label>
+            {{form.apellido}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="desde-text" class="col-form-label">Celular:</label>
+            {{form.Ncelular}}
+        </div>
+        <div class="form-group col-md-6">
+            <label for="message-text" class="col-form-label">Fotografia:</label>
+            {{form.fotografia}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="desde-text" class="col-form-label">Correo:</label>
+            {{form.correo}}
+        </div>
+            <div class="form-group col-md-3">
+                <Button type="submit" class="btn btn-primary" style="margin-top: 37px;">CREAR CONTACTO</Button>
+            </div>
+    </div>
+    </form>
+
+        <div> 
+     
+          <table id="myTable" class="table text-center table-striped table-bordered myTable">
             <thead>
                 <tr bgcolor="#bee5eb">
                     <th class="text-center">#</th>
-                    <th class="text-center" width="30%">Nombre</th>
-                    <th class="text-center" width="40%">Apellido</th>
-                    <th class="text-center" width="40%">Ncelular</th>
-                    <th class="text-center" width="40%">fotogragia</th>
-                    <th class="text-center" width="40%">Correo</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Celular1</th>
+                    <th scope="col">Fotografia</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">ACCIONES</th>
                 </tr>
             </thead>
             
@@ -36,15 +59,19 @@
                     <td>{{ contacto.nombre }}</td>
                     <td>{{ contacto.apellido }}</td>
                     <td>{{ contacto.Ncelular }}</td>
-                    <td><img src="{{ contacto.fotogragia.url }}"></td>
+                    <td><img src="{{ contacto.fotografia.url }}" width="100px"></td>
                     <td>{{ contacto.correo }}</td>
+                    <td class="btn-group">
+                        <button class="btn btn-success" type="submit">Editar</button>
+                        <button class="btn btn-danger" type="submit">Eliminar</button>
+                          
+                    </td>
                 </tr>
             {% endfor %}
         </table>
 
-        {# JS y jQuery Bootstrap #}
-        {% bootstrap_javascript jquery='full' %}
-    </body>
-    
 
-</html>
+
+        </div>
+        </div>
+        {% endblock %}
