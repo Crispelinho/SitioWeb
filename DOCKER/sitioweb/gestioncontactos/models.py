@@ -11,3 +11,13 @@ class Contacto(models.Model):
     correo=models.EmailField()
     class Meta:
         unique_together = ('Ncelular',)
+
+class Car(models.Model):
+    name = models.CharField()
+    color = models.CharField()
+    description = models.TextField()
+    type = models.IntegerField(choices=[
+        (1, "Sedan"),
+        (2, "Truck"),
+        (4, "SUV"),
+    ])

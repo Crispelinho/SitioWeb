@@ -1,29 +1,26 @@
-
-# -*- coding: utf-8 -*-
 from django_elasticsearch_dsl import Document
 from django_elasticsearch_dsl.registries import registry
-from .models import Contacto
+from .models import Car
+
 
 @registry.register_document
-class ContactoDocument(Document):
+class CarDocument(Document):
     class Index:
         # Name of the Elasticsearch index
-        name = 'contacto'
+        name = 'cars'
         # See Elasticsearch Indices API reference for available settings
         settings = {'number_of_shards': 1,
                     'number_of_replicas': 0}
 
     class Django:
-        model = Contacto # The model associated with this Document
+        model = Car # The model associated with this Document
 
         # The fields of the model you want to be indexed in Elasticsearch
         fields = [
-            'id',
-            'nombre',
-            'apellido',
-            'Ncelular',
-            'fotogragia',
-            'correo',
+            'name',
+            'color',
+            'description',
+            'type',
         ]
 
         # Ignore auto updating of Elasticsearch when a model is saved
