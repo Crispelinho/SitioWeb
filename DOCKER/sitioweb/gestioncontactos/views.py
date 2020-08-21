@@ -13,9 +13,9 @@ def Contactos(request):
         print(form)
         if form.is_valid():
             form.save()
-            return "Exitoso"
+            return HttpResponseRedirect('/Thanks/')
         else:
-            return "Error"
+            return HttpResponseRedirect('/Error/')
     else:   
             form = ContactosForm()
             context ={'form': form,
